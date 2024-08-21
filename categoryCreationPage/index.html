@@ -9,16 +9,18 @@
 
 <body>
     <h1>Category Creation Page</h1>
-    <form action="categoryCreation.php" method="post">
+    <form>
         <label for="categoryName">Category Name:</label>
         <input type="text" name="categoryName" id="categoryName" required>
         <br>
         <label for="categoryDescription">Category Description:</label>
         <input type="text" name="categoryDescription" id="categoryDescription" required>
         <br>
-        <input type="submit" value="Create Category">
+        <input type="submit" value="Create Category" id="submitBtn">
     </form>
     <a href="../index.html">Back to Home</a>
+
+    <script src="app.js" type="module"></script>
 </body>
 
 </html>

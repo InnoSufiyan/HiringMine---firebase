@@ -1,4 +1,4 @@
-import { auth, createUserWithEmailAndPassword, db, doc, setDoc, registerFirebase } from "../utils/firebase.js";
+import { auth, createUserWithEmailAndPassword, db, doc, setDoc, registerFirebase, saveDataInFirebase } from "../utils/firebase.js";
 
 document.querySelector('#submitBtn').addEventListener('click', async (e) => {
 
@@ -18,14 +18,18 @@ document.querySelector('#submitBtn').addEventListener('click', async (e) => {
 
         console.log("User registered with UID: ", uid);
 
-        // Add a new document in collection "users" with UID as document ID
-        await setDoc(doc(db, "users", uid), {
-            firstName: firstName,
-            lastName: lastName,
-            userName: userName,
-            email: email,
-            isAdmin: false,
-        });
+        // mera khud ka ek function ho
+        // jis ko main collection ka naam btaoun // users // categories // job post // product
+        // us k ander uid btaoun
+        // us ko woh data dun jo save karwana hai    {firstName, lastName} {categoryName, categoryDesc}
+
+        const savingUser = await saveDataInFirebase('users', uid, {
+            firstName,
+            lastName,
+            userName,
+            email,
+            isAdmin: false
+        })
 
         // Redirect to login page
         window.location.href = "../loginPage/index.html";
